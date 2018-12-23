@@ -1,15 +1,15 @@
-import { createHash } from 'crypto'
+import { createHash } from 'crypto';
 
 class BlockChain {
   constructor() {
-    this.blockData = '创世区块'
+    this.blockData = '创世区块';
   }
 
-  public blockChain: any[] = []
+  public blockChain: any[] = [];
 
-  public difficulty = 2
+  public difficulty = 2;
 
-  public blockData: any = null
+  public blockData: any = null;
 
   // 计算哈希值
   public static computeHash(
@@ -21,44 +21,44 @@ class BlockChain {
   ): string {
     return createHash('sha256')
       .update(height + data + timestamp + preHash + nonce)
-      .digest('hex')
+      .digest('hex');
   }
 
   public getLastBlock() {
-    return this.blockChain[this.blockChain.length - 1] || {}
+    return this.blockChain[this.blockChain.length - 1] || {};
   }
 
   // 挖矿
   public mine() {
     // 随机数初始值
-    let nonce = 0
+    let nonce = 0;
     // 当前区块高度
-    const height = this.blockChain.length
+    const height = this.blockChain.length;
     // 当期区块需要打包的数据
-    const data = this.blockData
+    const data = this.blockData;
     // 当前时间戳
-    const timestamp = new Date().getTime()
+    const timestamp = new Date().getTime();
     // 上一个区块的hash值
-    const preHash = this.getLastBlock().hash || '0'
+    const preHash = this.getLastBlock().hash || '0';
     let currentHash = BlockChain.computeHash(
       height,
       data,
       timestamp,
       preHash,
       nonce
-    )
+    );
     while (
       currentHash.slice(0, this.difficulty) !== '0'.repeat(this.difficulty)
     ) {
-      nonce += 1
+      nonce += 1;
       currentHash = BlockChain.computeHash(
         height,
         data,
         timestamp,
         preHash,
         nonce
-      )
-      console.log(nonce, currentHash)
+      );
+      console.log(nonce, currentHash);
     }
   }
 
@@ -72,5 +72,5 @@ class BlockChain {
   public verifyBlockChain() {}
 }
 
-const blockChain = new BlockChain()
-blockChain.mine()
+const blockChain = new BlockChain();
+blockChain.mine();
