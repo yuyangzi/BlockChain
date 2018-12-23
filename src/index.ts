@@ -5,10 +5,13 @@ class BlockChain {
     this.blockData = '创世区块';
   }
 
+  // 区块链
   public blockChain: any[] = [];
 
+  // 难度系数
   public difficulty = 2;
 
+  // 区块数据
   public blockData: any = null;
 
   // 计算哈希值
