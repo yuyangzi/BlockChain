@@ -2,8 +2,12 @@
   "name": "blockchain",
   "version": "0.0.1",
   "description": "使用node搭建的一个微型Block Chain",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prerestart": "npm run build",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +23,25 @@
   "bugs": {
     "url": "https://github.com/yuyangzi/BlockChain/issues"
   },
-  "homepage": "https://github.com/yuyangzi/BlockChain#readme"
+  "homepage": "https://github.com/yuyangzi/BlockChain#readme",
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,json,md}": [
+      "tslint -c tslint.json -p tsconfig.json --fix",
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
