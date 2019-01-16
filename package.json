@@ -26,10 +26,10 @@
   "homepage": "https://github.com/yuyangzi/BlockChain#readme",
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "husky": "^1.2.1",
+    "husky": "^1.3.1",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "typescript": "^3.2.2"
   },
   "lint-staged": {
